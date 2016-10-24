@@ -1,0 +1,19 @@
+%% plf function 
+% The plf function 
+
+
+function plf(u)
+
+m = 0;
+[~, u] = size(u); 
+
+for i = 1:u
+
+m = m + 1;
+x = (i - 1)/m; 
+
+xfinal = [];
+
+
+
+end
