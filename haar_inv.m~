@@ -10,22 +10,16 @@ n = m/2;
 
 a = 1; 
 
-for i = 1:3:m-1;
-        %add
-        c(a) = (haar_coeff(i) + haar_coeff(i+1));
-        
-        %substract
-        d(a) = (haar_coeff(i) - haar_coeff(i+1));
-        
-end 
-
-for h = 1:n-1
+for h = 1:n-1 
     a = 1; % Index for average
     c = []; 
     d = [];
     [~, m] = size(haar_coeff);
     
-    for i = 1:2:m-1; %s
+    %STILL NEED TO FIGURE OUT INDICES
+    
+    index = [2 4 8]
+    for i = 2:2:8; 
         
         %add
         c(a) = (haar_coeff(i) + haar_coeff(i+1));
@@ -33,6 +27,7 @@ for h = 1:n-1
         %substract
         d(a) = (haar_coeff(i) - haar_coeff(i+1));
         a = a + 1; 
+        
     end 
     
     if h == n-1;

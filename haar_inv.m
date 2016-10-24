@@ -17,18 +17,24 @@ for h = 1:n-1
     [~, m] = size(haar_coeff);
     
     %STILL NEED TO FIGURE OUT INDICES
-    for i = 1:h; 
+    
+    index = [2 4 8]; 
+    for i = index; 
+        haar_new = haar_coeff(1:i); 
+        [~, n] = size(haar_new);
         
-        
+        for j = 1:n-1
         %add
-        c(a) = (haar_coeff(i) + haar_coeff(i+1));
+        c(a) = (haar_new(j) + haar_new(j+1));
         
         %substract
-        d(a) = (haar_coeff(i) - haar_coeff(i+1));
+        d(a) = (haar_new(j) - haar_new(j+1));
         a = a + 1; 
+        end
         
     end 
     
+    %This part still not right
     if h == n-1;
     vector = [c d vector];   
     else 
