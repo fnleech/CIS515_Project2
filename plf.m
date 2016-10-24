@@ -1,16 +1,22 @@
 %% plf function 
-% The plf function 
 
+function [xfinal, yfinal] = plf(u)
 
-function xfinal = plf(u)
+[~, m] = size(u); 
+k = m;
+xfinal = [];
+yfinal = [];
 
-m = 0;
-[~, u] = size(u); 
-xfinal = []; 
-for i = 1:u
+for i = 1:k
+    
+x1 = (i - 1)/m;
+x2 = i/m;
+y1 = u(i);
+y2 = u(i); 
 
-m = m + 1;
-x = (i - 1)/m; 
+xnew = [x1 x2];
+ynew = [y1 y2];
 
-xfinal= [xfinal x];
+xfinal= [xfinal xnew];
+yfinal = [yfinal ynew];
 end
