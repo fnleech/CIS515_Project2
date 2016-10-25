@@ -25,14 +25,13 @@ handel = y(1:65536);
 sound(handel)
 
 % Run haar_step 
-hand_1 = haar_step(handel, 1);  
+hand_1 = haar_step(handel, 1); 
 hand_2 = haar_step(handel, 2); 
-hand_3 = haar_step(handel, 3);  
+hand_3 = haar_step(handel, 3); 
 
 % When k = 1, sound(handel) sounds very similar to the original handel.
 % When k = 2, 3 the result sounds like a sped up and quieter version of the
 % original. The frequency is increasing with each k, so handel is sped up.
 % With the averging and differencing the points in handel are decreasing,
-% so the "amplitude" of the sound is decreasing. As a result, hand_3 is the
-% quietest. 
+% so the "amplitude" of the sound is decreasing
 % pitch is getting quieter
