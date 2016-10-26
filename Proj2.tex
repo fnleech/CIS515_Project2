@@ -1,0 +1,183 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb,amsmath,epsfig}
+%\documentstyle[12pt,amsfonts]{article}
+%\documentstyle{article}
+
+\setlength{\topmargin}{-.5in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\textwidth}{6.5truein}
+\setlength{\textheight}{8.5truein}
+\setcounter{MaxMatrixCols}{15}
+%\input ../basicmath/basicmathmac.tex
+%
+%\input ../adgeomcs/lamacb.tex
+\input mac-new.tex
+\input mathmac-v2.tex
+%\input ../adgeomcs/mac.tex
+%\input ../adgeomcs/mathmac.tex
+
+\def\fseq#1#2{(#1_{#2})_{#2\geq 1}}
+\def\fsseq#1#2#3{(#1_{#3(#2)})_{#2\geq 1}}
+\def\qleq{\sqsubseteq}
+
+%
+\begin{document}
+\begin{center}
+\fbox{{\Large\bf Fall 2016 \hspace*{0.4cm} CIS 515}}\\
+\vspace{1cm}
+{\Large\bf Fundamentals of Linear Algebra and Optimization\\
+Jean Gallier \\
+\vspace{0.5cm}
+Project 2}\\[10pt]
+Due October 27, 2016\\
+Frankie Leech, Chen Xiang, Reffat Manzur\\
+\end{center}
+
+\vspace{0.5cm}
+
+\medskip
+(4)
+Write two {\tt Matlab} functions {\tt haar2D} and {\tt haar\_inv2D}
+implementing the method for computing the Haar transform
+of a  matrix and the reconstruction of an image from its matrix of Haar
+coefficients, as described in the notes.\\------------------------------\\
+According to the notes, the Haar transform of a matrix is given by $C = H_m^T A H_n$ and the reconstruction of an image from its Haar coefficients by $A = H_m C H_n^T$ . To get {\tt haar2D}, we can think of a matrix A as    composed of m row vectors (u) with n elements in each vector. Then, we can perform the averaging and differencing algorithm on each row as given by:
+$$c^j(i) = (c^{j+1}(2i -1) + c^{j+1}(2i))/sqrt(2)$$  
+$$c^j(2^j+i) = (c^{j+1}(2i -1) - c^{j+1}(2i))/sqrt(2)$$ 
+
+Afterwards, we perform averaging and differencing algorithm on the columns of the matrix $B=A H_n$.
+
+
+For {\tt haar\_inv2D},we reconstruct an image from its matrix coefficients by using the algorithm: 
+$$u^{j+1}(2i-1) = (u^{j}(i) + u^{j}(2^j+i))/sqrt(2)$$  
+$$u^{j+1}(2i) = (u^{j}(i) - u^{j}(2^j+i))/sqrt(2)$$
+
+
+
+
+\medskip
+Apply the function {\tt haar\_inv2D} to the matrix
+\[
+T = 
+\begin{pmatrix}
+1212 & -306 & -146 & -54 & -24 & -68 & -40 & 4 \\
+    30 & 36 & -90 & -2 &  8 & -20 & 8  & -4 \\
+    -50 & -10 & -20 & -24 & 0 & 72 & -16 & -16 \\
+    82 & 38 & -24 & 68 & 48 & -64 & 32 & 8 \\
+    8 & 8 & -32 & 16 & -48 & -48 & -16 & 16 \\
+    20 & 20 & -56 & -16 & -16 & 32 & -16 & -16 \\
+    -8 & 8 & -48 & 0 & -16 & -16 & -16 &  -16 \\
+    44 & 36 & 0 & 8 & 80 & -16 & -16 & 0
+\end{pmatrix}.
+\]
+
+The method we use to compute the Haar transform of matrix T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Compare your result with the matrix $P$ of Example 4.1 of the paper by
+Greg Ames (see the web page for CIS515). The matrix in Ames's paper
+seems to have at typo! What is it?
+
+\medskip
+You can load and display 
+various images in {\tt Matlab} using the following lines of code:
+\begin{verbatim}
+clear X map
+load('durer','X')
+Xdurer = X(1:512,:);
+Xdurer(:,510:512) = 50;
+figure
+colormap(gray)
+imagesc(Xdurer)
+\end{verbatim}
+The above loads the file {\tt durer}.
+There are a few other  images such as {\tt detail}, {\tt flujet}, {\tt earth},
+{\tt mandrill}, {\tt spine}, and {\tt clown}. You may have to resize
+these images to have dimensions that are powers of $2$.
+To display an image, use {\tt imagesc}.
+
+\medskip
+Convert {\tt Xdurer}  to its Haar transform and decode it. Compare the
+original and the reconstructed image.
+
+
+\medskip
+(5)
+Write two {\tt Matlab} functions {\tt haar2D\_n} and {\tt haar\_inv2D\_n}
+implementing the method for computing the normalized Haar transform
+of a  matrix and the reconstruction of an image from its matrix of
+normalized Haar
+coefficients, as described in the notes.
+
+\medskip
+Consider the image given by the following matrix:
+\[
+A =
+\begin{pmatrix}
+100 & 103 & 99 & 97 & 93 & 94 & 78 & 73 \\
+ 102 & 97 & 100 & 111 & 113 & 104 & 96 & 82 \\
+ 99 & 109 & 104 & 95 & 93 & 92 & 88 & 76 \\
+ 114 & 104 &  99 & 102 & 93 & 82 & 74 & 74 \\
+ 96 & 91 & 91 & 87 & 79 & 78 & 77 & 76 \\
+ 90 & 88 & 83 & 78 & 77 & 74 & 76 & 76 \\
+ 92 & 81 & 73 & 72 & 69 & 65 & 66 & 62 \\
+ 75 & 70 & 69 & 65 & 60 & 55 & 61 & 65
+\end{pmatrix}
+\]
+
+Use {\tt haar2D\_n} to compute the normalized matrix $C$ of Haar
+coefficients of $A$.
+
+\medskip
+It is claimed in Ames's paper (Section 7) that the reconstructed  matrix
+\[
+A_2 =
+\begin{pmatrix}
+100  &  100  &   95  &   95  &   92  &   92  &   76  &   76 \\
+   103 &   103  &   98  &   98  &  106  &  106  &   90  &   90 \\
+    99  &  109  &   99  &   99  &   96  &   96  &   81  &   81 \\
+   114  &  104  &  104  &  104  &   91  &   91  &   76  &   76 \\
+    91  &   91  &   86  &   86  &   76  &   76  &   76  &   76 \\
+    91  &   91  &   86  &   86  &   76  &   76  &   76  &   76 \\
+    82  &   82  &   76  &   76  &   66  &   66  &   66  &   66 \\
+    74  &   74  &   69  &   69  &   58  &   58  &   59  &  59
+\end{pmatrix}
+\]
+is obtained from the normalized matrix
+\[
+C_1 =
+\begin{pmatrix}
+255  &  52  &   15  &  21  &  0  &  0  &  0  &  0 \\
+78   &    0   &    0   &  22  &  0  &  0  &  0  &  0 \\
+0     &    0   &    0   &    0  &  0  &  0  &  0  &  0 \\
+38     &    0   &    0   &    0  &  0  &  0  &  0  &  0 \\
+0     &   11  &    0   &    0  &  0  &  0  &  0  &  0 \\
+0     &    0   &    0   &    0  &  0  &  0  &  0  &  0 \\
+0     &    0   &    0   &    0  &  0  &  0  &  0  &  0 \\
+15     &    0   &    0   &    0  &  0  &  0  &  0  &  0 
+\end{pmatrix},
+\]
+but this not quite correct. First, the coefficient $255$ should be
+$682$, and other nonzero entries are missing.
+Find the matrix $C_2$, a compressed version of $C$, that gives back
+$A_2$.
+
+\medskip
+\hint
+The command {\tt round} is helpful.
+
+
+\end{document}
