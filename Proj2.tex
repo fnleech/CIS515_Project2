@@ -42,17 +42,16 @@ Write two {\tt Matlab} functions {\tt haar2D} and {\tt haar\_inv2D}
 implementing the method for computing the Haar transform
 of a  matrix and the reconstruction of an image from its matrix of Haar
 coefficients, as described in the notes.\\------------------------------\\
-According to the notes, the Haar transform of a matrix is given by $C = H_m^T A H_n$ and the reconstruction of an image from its Haar coefficients by $A = H_m C H_n^T$ . To get {\tt haar2D}, we can think of a matrix A as    composed of m row vectors (u) with n elements in each vector. Then, we can perform the averaging and differencing algorithm on each row as given by:
-$$c^j(i) = (c^{j+1}(2i -1) + c^{j+1}(2i))/sqrt(2)$$  
-$$c^j(2^j+i) = (c^{j+1}(2i -1) - c^{j+1}(2i))/sqrt(2)$$ 
+According to the notes, the Haar transform of a matrix is given by $C = (W_m^{-1})^T A (W_n^{-1})^T$ and the reconstruction of an image from its Haar coefficients by $A = W_m C W_n^T$ . To get {\tt haar2D}, we can think of a matrix A as    composed of m row vectors (u) with n elements in each vector. Then, we can perform the averaging and differencing algorithm on each row as given by:
+$$c^j(i) = (c^{j+1}(2i -1) + c^{j+1}(2i))/2$$  
+$$c^j(2^j+i) = (c^{j+1}(2i -1) - c^{j+1}(2i))/2$$ 
 
-Afterwards, we perform averaging and differencing algorithm on the columns of the matrix $B=A H_n$.
+Afterwards, we perform averaging and differencing algorithm on the columns of the matrix $B=A W_n^{-1}$.
 
 
 For {\tt haar\_inv2D},we reconstruct an image from its matrix coefficients by using the algorithm: 
-$$u^{j+1}(2i-1) = (u^{j}(i) + u^{j}(2^j+i))/sqrt(2)$$  
-$$u^{j+1}(2i) = (u^{j}(i) - u^{j}(2^j+i))/sqrt(2)$$
-\medskip
+$$u^{j+1}(2i-1) = (u^{j}(i) + u^{j}(2^j+i))$$  
+$$u^{j+1}(2i) = (u^{j}(i) - u^{j}(2^j+i))$$
 Apply the function {\tt haar\_inv2D} to the matrix
 \[
 T = 
