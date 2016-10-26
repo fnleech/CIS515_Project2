@@ -3,7 +3,7 @@
 % function vector = haar_inv(haar_coeff)
 
 
-function vector = haar_inv(haar_coeff)
+function vector = haar_inv(haar_coeff, ~)
 [~, rows] = size(haar_coeff); 
 
 %Get number of iterations
@@ -15,6 +15,7 @@ u_new = u_old;
 
 %loop through u_j vectors first and then 
 % through i elements in u_j
+if nargin == 1
 for j = 0:n-1
     for i = 1:(2^j)
     u_new(2*i-1) = u_old(i) + u_old(2^j + i); 
@@ -23,7 +24,17 @@ for j = 0:n-1
     u_old = u_new; 
 end 
 % Get original vector back 
-vector = u_old; 
+vector = u_old;
+else 
+for j = 0:n-1
+    for i = 1:(2^j)
+    u_new(2*i-1) = (u_old(i) + u_old(2^j + i)) / sqrt(2); 
+    u_new(2*i) = (u_old(i) - u_old(2^j + i)) / sqrt(2);
+    end
+    u_old = u_new; 
+end 
+% Get original vector back 
+vector = u_old;
 end 
 
 

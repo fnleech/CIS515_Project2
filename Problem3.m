@@ -1,8 +1,7 @@
 %% Problem 3
 u = [0 2 4 6 6 4 2 1 -1 -2 -4 -6 -6 -4 -2 0];
 %% 3.1 Check if haar_step works
-unew = haar_step(u, 5);
-
+unew = haar_step(u, 4);
 %% 3.2 Now create w
 w = [u u u u u u u u]; 
 unew1 = haar_step(w, 1);
