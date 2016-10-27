@@ -2,6 +2,7 @@
 \usepackage{amsfonts,amssymb,amsmath,epsfig}
 %\documentstyle[12pt,amsfonts]{article}
 %\documentstyle{article}
+\usepackage{graphicx}
 
 \setlength{\topmargin}{-.5in}
 \setlength{\oddsidemargin}{0 in}
@@ -12,8 +13,8 @@
 %\input ../basicmath/basicmathmac.tex
 %
 %\input ../adgeomcs/lamacb.tex
-\input mac-new.tex
-\input mathmac-v2.tex
+%\input mac-new.tex
+%\input mathmac-v2.tex
 %\input ../adgeomcs/mac.tex
 %\input ../adgeomcs/mathmac.tex
 
@@ -40,8 +41,8 @@ Frankie Leech, Chen Xiang, Reffat Manzur\\
 
 In this project, we explore properties of Haar wavelets in the context of audio signals and images. The functions that we create for this project include: {\tt haar},{\tt haar\_inv},{\tt haar\_step},\\{\tt haar\_inv\_step},{\tt haar2D},{\tt haar\_inv2D},{\tt haar2D\_n},and {\tt haar\_inv2D\_n}.
 \medskip\\
-(1) Graph of $plf(u)$ over the interval [0,1):
-[insert graph]
+(1) Graph of $plf(u)$ over the interval [0,1):\\
+\includegraphics[scale=.5]{plfgraph}
 \medskip
 \\(2) We observe that we are not able to compute the haar transform for the vector $u$ concatenated 9 times because the length of the vector is not a power of 2. We also observe that the number of zeros in the haar transform of a vector is equal to the number of concatenations of vector $u$.
 \medskip\\
@@ -58,7 +59,8 @@ For {\tt haar\_inv2D},we reconstruct an image from its matrix coefficients by us
 $$u^{j+1}(2i-1) = (u^{j}(i) + u^{j}(2^j+i))$$  
 $$u^{j+1}(2i) = (u^{j}(i) - u^{j}(2^j+i))$$
 The typo in Ame's paper is that the matrix element 
-(3,3) should be 1152 rather than 1156. We also notice that the Xdurer picture after it is reconstructed is much darker than the original and more compressed.
+(3,3) should be 1152 rather than 1156. We also notice that the Xdurer picture after it is reconstructed is much darker than the original and more compressed.\\
+\includegraphics[scale=0.6]{Problem4_origin_vs_haar}
 \medskip\\
 (5)
 A similar process to the one described in problem 4 was used to get the functions {\tt haar2D\_n} and {\tt haar\_inv2D\_n}.
@@ -85,5 +87,8 @@ To get matrix $C_2$, we use the command {\tt round(htransform)} on matrix $A_2$ 
      0    &  0  &    0   &   0  &    0  &    0 &     0 &     0\\
     15    &  0  &    1  &    1  &    0  &    0  &    0  &    0
 \end{pmatrix}$$
+(6)
+Here are origin, one round, two round, three round haar transformation of the image. \\
+\includegraphics[scale=0.25] {Problem6_origin_vs_1_2_3_round_haar}
 
 \end{document}
